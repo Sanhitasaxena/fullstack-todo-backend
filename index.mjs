@@ -114,6 +114,22 @@ app.delete("/deleteTodo/:id", async(req, res)=>{
    }
 })
 
+app.put("/updateTodo/:id", async(req, res)=>{
+ try {
+  const updatedTodoId = req.params.id
+  const updatedTodoValue = req.body.editteditem
+  const response = await Todo.findByIdAndUpdate(updatedTodoId, {
+     TodoName: updatedTodoValue ,
+     new: true 
+  }) 
+  
+  res.json({message: "data updated successfully", response})
+ } catch (error) {
+  console.log(error);
+ }
+
+})
+
 
 
 app.listen(PORT,()=>{
